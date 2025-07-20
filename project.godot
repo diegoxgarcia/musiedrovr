@@ -13,7 +13,8 @@ config_version=5
 config/name="Musiedro"
 run/main_scene="uid://cefrxwhapemqs"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://da8qa8t8gmruv"
+config/icon="uid://7xifnl1atq1m"
 
 [autoload]
 
