@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cefrxwhapemqs"]
+[gd_scene load_steps=16 format=3 uid="uid://cefrxwhapemqs"]
 
 [ext_resource type="Script" uid="uid://b0xr8uy2i15bk" path="res://Scenes/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/xr_origin.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cysdx83c12io6" path="res://Scenes/cube.tscn" id="3_8gbba"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,6 +22,30 @@ size = Vector3(5, 0.1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(5, 0.1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+albedo_color = Color(0.423529, 0.298039, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8gbba"]
+material = SubResource("StandardMaterial3D_bo1nx")
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjvhh"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gbba"]
+albedo_color = Color(0.882353, 0.886275, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjvhh"]
+material = SubResource("StandardMaterial3D_8gbba")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kry3j"]
+albedo_color = Color(0.0521768, 0.430005, 0.454136, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
+material = SubResource("StandardMaterial3D_kry3j")
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_bo1nx")
@@ -43,3 +68,30 @@ mesh = SubResource("BoxMesh_ig7tw")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="Table" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50895, -1.21586)
+mesh = SubResource("BoxMesh_8gbba")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
+shape = SubResource("BoxShape3D_jjvhh")
+
+[node name="PickableObject" parent="." instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07485, -1.26475)
+
+[node name="PickableObject3" parent="." instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.341738, 1.06962, -1.25651)
+
+[node name="MeshInstance3D" parent="PickableObject3" index="1"]
+mesh = SubResource("BoxMesh_jjvhh")
+
+[node name="PickableObject2" parent="." instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280809, 1.06962, -1.25651)
+
+[node name="MeshInstance3D" parent="PickableObject2" index="1"]
+mesh = SubResource("BoxMesh_21xkr")
+
+[editable path="PickableObject3"]
+[editable path="PickableObject2"]
