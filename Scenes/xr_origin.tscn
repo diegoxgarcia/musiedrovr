@@ -1,11 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6a6n3crlib1l"]
+[gd_scene load_steps=12 format=3 uid="uid://b6a6n3crlib1l"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_45kyn"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_0xq71"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_awepa"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_e71k4"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_1ig6u"]
+[ext_resource type="PackedScene" uid="uid://bxm1ply47vaan" path="res://addons/godot-xr-tools/functions/movement_climb.tscn" id="4_bd00l"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_e71k4"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="5_lomj2"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="6_1ig6u"]
+[ext_resource type="Script" uid="uid://c5s534g6u2io8" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="8_08vvs"]
+
+[sub_resource type="Resource" id="Resource_bd00l"]
+script = ExtResource("8_08vvs")
+flags = 0
+move_drag = 5.0
+move_traction = 30.0
+stop_on_slope = true
+move_max_slope = 45.0
+jump_max_slope = 45.0
+jump_velocity = 4.0
+bounciness = 0.0
+bounce_threshold = 1.0
+metadata/_custom_type_script = "uid://c5s534g6u2io8"
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
@@ -20,6 +37,12 @@ tracker = &"left_hand"
 
 [node name="FunctionPickup" parent="LeftHand" instance=ExtResource("3_e71k4")]
 
+[node name="MovementClimb" parent="LeftHand" instance=ExtResource("4_bd00l")]
+
+[node name="FunctionPointer" parent="LeftHand" instance=ExtResource("5_lomj2")]
+show_laser = 2
+laser_length = 1
+
 [node name="RightHand" type="XRController3D" parent="."]
 tracker = &"right_hand"
 
@@ -30,4 +53,14 @@ turn_mode = 2
 
 [node name="FunctionPickup" parent="RightHand" instance=ExtResource("3_e71k4")]
 
+[node name="MovementJump" parent="RightHand" instance=ExtResource("6_1ig6u")]
+jump_button_action = "ax_button"
+
+[node name="MovementClimb" parent="RightHand" instance=ExtResource("4_bd00l")]
+
+[node name="FunctionPointer" parent="RightHand" instance=ExtResource("5_lomj2")]
+show_laser = 2
+laser_length = 1
+
 [node name="PlayerBody" parent="." instance=ExtResource("4_e71k4")]
+physics = SubResource("Resource_bd00l")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://trhwfgmvhboq"]
+
+[ext_resource type="PackedScene" uid="uid://cjyilbm4ucc7s" path="res://addons/godot-xr-tools/objects/climbable.tscn" id="1_bgumi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_spn8y"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfgee"]
+albedo_color = Color(1, 0.352941, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgoc0"]
+material = SubResource("StandardMaterial3D_xfgee")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="RockClimbObj" instance=ExtResource("1_bgumi")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_spn8y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_dgoc0")
