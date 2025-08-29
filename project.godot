@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Musiedro"
-run/main_scene="uid://cefrxwhapemqs"
+run/main_scene="uid://cu5lfoikocd8n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://da8qa8t8gmruv"
 config/icon="uid://7xifnl1atq1m"
@@ -33,6 +33,7 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
 folder_colors={
 "res://Assets/": "pink",
+"res://Global/": "teal",
 "res://Test/": "yellow",
 "res://addons/": "orange",
 "res://android/": "green"

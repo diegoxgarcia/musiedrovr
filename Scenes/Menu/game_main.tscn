@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu5lfoikocd8n"]
+
+[ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="1_mcq2o"]
+[ext_resource type="Script" uid="uid://cjdi75t7561l2" path="res://Scenes/Menu/game_main.gd" id="1_tf2yj"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_tf2yj"]
+[ext_resource type="PackedScene" uid="uid://uqoeqlw7y6fv" path="res://Scenes/UI/game_menu.tscn" id="3_mymk4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qu83h"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_o4s6s"]
+sky_material = SubResource("ProceduralSkyMaterial_qu83h")
+
+[sub_resource type="Environment" id="Environment_mg83g"]
+background_mode = 2
+sky = SubResource("Sky_o4s6s")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qu83h"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o4s6s"]
+size = Vector3(10, 0.1, 10)
+
+[node name="GameMain" type="Node3D"]
+script = ExtResource("1_tf2yj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mg83g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="XROrigin3D" parent="." instance=ExtResource("1_mcq2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376785, 0)
+script = null
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Viewport2Din3D" parent="Environment" instance=ExtResource("2_tf2yj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8407, -2.92362)
+scene = ExtResource("3_mymk4")
+viewport_size = Vector2(1152, 648)
+unshaded = true
+scene_properties_keys = PackedStringArray("game_menu.gd")
+
+[node name="Floor" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+shape = SubResource("BoxShape3D_qu83h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D"]
+mesh = SubResource("BoxMesh_o4s6s")

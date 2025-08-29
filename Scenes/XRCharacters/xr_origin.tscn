@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6a6n3crlib1l"]
+[gd_scene load_steps=13 format=3 uid="uid://b6a6n3crlib1l"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_45kyn"]
+[ext_resource type="Script" uid="uid://dm62uiqthxe67" path="res://Scenes/XRCharacters/xr_origin.gd" id="1_pt74s"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_0xq71"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_awepa"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_e71k4"]
@@ -25,6 +26,7 @@ bounce_threshold = 1.0
 metadata/_custom_type_script = "uid://c5s534g6u2io8"
 
 [node name="XROrigin3D" type="XROrigin3D"]
+script = ExtResource("1_pt74s")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 
