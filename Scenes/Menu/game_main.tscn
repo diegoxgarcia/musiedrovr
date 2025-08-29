@@ -40,7 +40,13 @@ script = null
 
 [node name="Environment" type="Node" parent="."]
 
-[node name="Viewport2Din3D" parent="Environment" instance=ExtResource("2_tf2yj")]
+[node name="ViewPortCredits" parent="Environment" instance=ExtResource("2_tf2yj")]
+transform = Transform3D(0.401294, 0, -0.298267, 0, 0.5, 0, 0.298267, 0, 0.401294, 1.99456, 1.91751, -2.07955)
+visible = false
+scene = ExtResource("3_mymk4")
+scene_properties_keys = PackedStringArray("game_menu.gd")
+
+[node name="ViewPortMain" parent="Environment" instance=ExtResource("2_tf2yj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8407, -2.92362)
 scene = ExtResource("3_mymk4")
 viewport_size = Vector2(1152, 648)
