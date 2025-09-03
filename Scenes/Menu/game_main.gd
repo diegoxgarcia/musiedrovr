@@ -11,6 +11,7 @@ extends XRMainNode
 @onready var view_port_main: XRToolsViewport2DIn3D = $Environment/ViewPortMain
 @onready var menu_control = view_port_main.get_scene_instance()
 @onready var view_port_credits: XRToolsViewport2DIn3D = $Environment/ViewPortCredits
+@onready var view_port_how_to = $Environment/ViewPortHowTo
 
 func _ready():
 	config_xr()
@@ -20,6 +21,7 @@ func _ready():
 
 func connect_signal_buttons():
 	menu_control.show_credits.connect(_on_show_credits)
+	menu_control.show_how_to.connect(_on_show_how_to)
 	pass
 
 func disable_movement():
@@ -34,5 +36,9 @@ func disable_movement():
 	
 func _on_show_credits():
 	view_port_credits.visible = true
+	## ver si se puede darle play a una animacion donde se mueva el viewPort
 	pass
-	
+
+func _on_show_how_to():
+	view_port_how_to.visible = true
+	pass

@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj4lkw3xmoyrw"]
+
+[ext_resource type="Shader" uid="uid://bwin5swkt68y" path="res://Scenes/UI/audio_menu.gdshader" id="1_uh1qo"]
+[ext_resource type="FontFile" uid="uid://dndckiai2p8e8" path="res://Assets/Fonts/kirifont/KiriFont.otf" id="2_ari3v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sif31"]
+shader = ExtResource("1_uh1qo")
+shader_parameter/color_a = Color(0.1, 0.3, 0.9, 1)
+shader_parameter/color_b = Color(0.95, 0.75, 0.1, 1)
+shader_parameter/angle_deg = 90.0
+
+[node name="HowToMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 0.443137, 0.305882, 1)
+material = SubResource("ShaderMaterial_sif31")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HowToPlayTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.278
+anchor_top = 0.106
+anchor_right = 0.781
+anchor_bottom = 0.204
+offset_left = -0.256042
+offset_top = 0.311996
+offset_right = 0.287964
+offset_bottom = -0.192001
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ari3v")
+theme_override_font_sizes/font_size = 60
+text = "How To Play"
+
+[node name="HowToPlay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.273
+anchor_right = 0.944
+anchor_bottom = 0.897
+offset_left = 0.487999
+offset_top = 0.095993
+offset_right = -0.488037
+offset_bottom = -0.255981
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ari3v")
+theme_override_font_sizes/font_size = 35
+text = "Put all the shapes in their 
+respective baskets, with their respective 
+colors, and you'll start unlocking
+ melodies and rhythms that 
+will blow your mind."
+horizontal_alignment = 1
+vertical_alignment = 1
