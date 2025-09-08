@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpbci75djwcd1"]
+[gd_scene load_steps=10 format=3 uid="uid://dpbci75djwcd1"]
 
+[ext_resource type="Script" uid="uid://brl24g4huyyfd" path="res://Scenes/UI/audio_menu.gd" id="1_8nfie"]
 [ext_resource type="Shader" uid="uid://bwin5swkt68y" path="res://Scenes/UI/audio_menu.gdshader" id="1_y7mo7"]
 [ext_resource type="FontFile" uid="uid://dndckiai2p8e8" path="res://Assets/Fonts/kirifont/KiriFont.otf" id="2_l77ev"]
 [ext_resource type="Texture2D" uid="uid://sxfsumass2h7" path="res://Assets/GUI/white_musicOn.png" id="3_7m8wb"]
@@ -25,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8nfie")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 0.443137, 0.305882, 1)
@@ -117,3 +119,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_r440o")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_e61tm")
 min_value = -80.0
 max_value = 0.0
+
+[connection signal="value_changed" from="VBoxContainer/MasterAudioSlider" to="." method="_on_master_audio_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicAudioSlider" to="." method="_on_music_audio_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXAudioSlider" to="." method="_on_sfx_audio_slider_value_changed"]

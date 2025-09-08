@@ -23,3 +23,8 @@ func _on_how_to_button_pressed():
 func _on_credit_button_pressed():
 	show_credits.emit()
 	pass
+
+
+func _on_test_button_pressed():
+	get_tree().change_scene_to_file("res://Test/main.tscn")
+	pass 

@@ -79,7 +79,16 @@ theme_override_fonts/font = ExtResource("2_m6y3d")
 theme_override_font_sizes/font_size = 48
 text = "Credits"
 
+[node name="TestButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_m6y3d")
+theme_override_font_sizes/font_size = 48
+text = "Test
+"
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/AudioButton" to="." method="_on_audio_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreditButton" to="." method="_on_credit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButton" to="." method="_on_test_button_pressed"]
