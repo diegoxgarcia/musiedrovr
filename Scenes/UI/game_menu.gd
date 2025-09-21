@@ -1,12 +1,14 @@
 class_name GameMenu
 extends Control
 
+signal show_start
 signal show_credits
 signal show_audio_menu
+signal show_test
 signal show_how_to
 
 func _on_start_button_pressed():
-	print_debug("Start")
+	show_start.emit()
 	pass
 
 
@@ -26,5 +28,5 @@ func _on_credit_button_pressed():
 
 
 func _on_test_button_pressed():
-	get_tree().change_scene_to_file("res://Test/main.tscn")
+	show_test.emit()
 	pass 

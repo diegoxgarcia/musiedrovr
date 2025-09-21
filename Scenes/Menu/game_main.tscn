@@ -81,6 +81,7 @@ script = null
 
 [node name="ViewPortAudio" parent="Environment" instance=ExtResource("2_tf2yj")]
 transform = Transform3D(0.401294, 0, -0.298267, 0, 0.5, 0, 0.298267, 0, 0.401294, 2.1, 1.9, -2.4)
+visible = false
 scene = ExtResource("4_mymk4")
 viewport_size = Vector2(1152, 648)
 unshaded = true
@@ -95,6 +96,7 @@ scene_properties_keys = PackedStringArray("game_menu.gd")
 
 [node name="ViewPortHowTo" parent="Environment" instance=ExtResource("2_tf2yj")]
 transform = Transform3D(0.401409, 0, 0.298112, 0, 0.5, 0, -0.298112, 0, 0.401409, -2.1, 1.9, -2.4)
+visible = false
 scene = ExtResource("7_kltn7")
 viewport_size = Vector2(1152, 648)
 unshaded = true
@@ -113,3 +115,5 @@ mesh = SubResource("BoxMesh_o4s6s")
 libraries = {
 &"": SubResource("AnimationLibrary_kltn7")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

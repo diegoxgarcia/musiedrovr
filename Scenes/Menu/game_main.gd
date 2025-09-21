@@ -9,9 +9,10 @@ extends XRMainNode
 @onready var movement_climb_left: XRToolsMovementClimb = $XROrigin3D/LeftHand/MovementClimb
 @onready var movement_climb_right: XRToolsMovementClimb = $XROrigin3D/RightHand/MovementClimb
 @onready var view_port_main: XRToolsViewport2DIn3D = $Environment/ViewPortMain
-@onready var menu_control = view_port_main.get_scene_instance()
-@onready var view_port_credits: XRToolsViewport2DIn3D = $Environment/ViewPortCredits
+@onready var menu_control: GameMenu = view_port_main.get_scene_instance()
+@onready var view_port_audio: XRToolsViewport2DIn3D = $Environment/ViewPortAudio
 @onready var view_port_how_to = $Environment/ViewPortHowTo
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	config_xr()
@@ -22,6 +23,9 @@ func _ready():
 func connect_signal_buttons():
 	menu_control.show_credits.connect(_on_show_credits)
 	menu_control.show_how_to.connect(_on_show_how_to)
+	menu_control.show_test.connect(_on_show_test)
+	menu_control.show_start.connect(_on_show_start)
+	menu_control.show_audio_menu.connect(_on_show_audio_menu)
 	pass
 
 func disable_movement():
@@ -34,11 +38,29 @@ func disable_movement():
 	movement_climb_right.enabled = false
 	pass
 	
+func _on_show_start():
+	
+	pass
+	
 func _on_show_credits():
-	view_port_credits.visible = true
-	## ver si se puede darle play a una animacion donde se mueva el viewPort
+
 	pass
 
 func _on_show_how_to():
 	view_port_how_to.visible = true
 	pass
+	
+func _on_show_test():
+	animation_player.play("lights_off_fade")
+	pass
+	
+func _on_show_audio_menu():
+	view_port_audio.visible = true
+	## ver si se puede darle play a una animacion donde se mueva el viewPort
+	pass
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"lights_off_fade":
+			get_tree().change_scene_to_file("res://Test/main.tscn")
+	pass # Replace with function body.
