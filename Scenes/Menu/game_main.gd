@@ -13,11 +13,18 @@ extends XRMainNode
 @onready var view_port_audio: XRToolsViewport2DIn3D = $Environment/ViewPortAudio
 @onready var view_port_how_to = $Environment/ViewPortHowTo
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var screenViewPortAudio: MeshInstance3D = $Environment/ViewPortAudio/Screen
+@onready var screenViewPortHowTo: MeshInstance3D = $Environment/ViewPortHowTo/Screen
+@onready var screenViewPortCredits: MeshInstance3D = $Environment/ViewPortCredits/Screen
+
 
 func _ready():
 	config_xr()
 	disable_movement()
 	connect_signal_buttons()
+	make_screen_transparent(screenViewPortAudio)
+	make_screen_transparent(screenViewPortHowTo)
+	make_screen_transparent(screenViewPortCredits)
 	pass
 
 func connect_signal_buttons():
@@ -38,16 +45,47 @@ func disable_movement():
 	movement_climb_right.enabled = false
 	pass
 	
+func make_screen_transparent(screen: MeshInstance3D):
+	var mat := get_screen_material(screen)
+	if mat == null: return
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.albedo_color.a = 0.0
+	pass
+	
+func get_screen_material(screen: MeshInstance3D) -> BaseMaterial3D:
+	var mat := screen.get_active_material(0)
+	if mat == null:
+		return null
+	if not mat.resource_local_to_scene:
+		mat = mat.duplicate()
+		mat.resource_local_to_scene = true
+		screen.set_surface_override_material(0, mat)
+	return mat
+	
+func fade_in_viewport(screen: MeshInstance3D, duration: float = 1.0):
+	var mat := get_screen_material(screen)
+	if mat == null: return
+	if mat.albedo_color.a == 1.0: fade_out_viewport(mat, 2.4)
+	else:
+		var t := create_tween()
+		t.tween_property(mat, "albedo_color:a", 1.0, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	pass
+	
+func fade_out_viewport(material: BaseMaterial3D, duration: float = 1.0):
+	var t := create_tween()
+	t.tween_property(material, "albedo_color:a", 0.0, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	pass
+	
 func _on_show_start():
 	
 	pass
 	
 func _on_show_credits():
-
+	fade_in_viewport(screenViewPortCredits, 2.4)
 	pass
 
 func _on_show_how_to():
-	view_port_how_to.visible = true
+	fade_in_viewport(screenViewPortHowTo, 2.4)
 	pass
 	
 func _on_show_test():
@@ -55,7 +93,7 @@ func _on_show_test():
 	pass
 	
 func _on_show_audio_menu():
-	view_port_audio.visible = true
+	fade_in_viewport(screenViewPortAudio, 2.4)
 	## ver si se puede darle play a una animacion donde se mueva el viewPort
 	pass
 
