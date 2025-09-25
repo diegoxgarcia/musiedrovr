@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cu5lfoikocd8n"]
+[gd_scene load_steps=19 format=3 uid="uid://cu5lfoikocd8n"]
 
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="1_mcq2o"]
 [ext_resource type="Script" uid="uid://cjdi75t7561l2" path="res://Scenes/Menu/game_main.gd" id="1_tf2yj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dpbci75djwcd1" path="res://Scenes/UI/audio_menu.tscn" id="4_mymk4"]
 [ext_resource type="PackedScene" uid="uid://k6e84xh4qu8d" path="res://Scenes/UI/credits_menu.tscn" id="4_q0tdy"]
 [ext_resource type="PackedScene" uid="uid://bj4lkw3xmoyrw" path="res://Scenes/UI/how_to_menu.tscn" id="7_kltn7"]
+[ext_resource type="Texture2D" uid="uid://c8ybs0sbt63nb" path="res://Assets/Textures/texture_08.png" id="8_kltn7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qu83h"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -25,7 +26,12 @@ adjustment_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_qu83h"]
 size = Vector3(10, 0.1, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_085ix"]
+albedo_texture = ExtResource("8_kltn7")
+uv1_scale = Vector3(10, 10, 10)
+
 [sub_resource type="BoxMesh" id="BoxMesh_o4s6s"]
+material = SubResource("StandardMaterial3D_085ix")
 size = Vector3(10, 0.1, 10)
 
 [sub_resource type="Animation" id="Animation_q0tdy"]
