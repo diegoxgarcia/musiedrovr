@@ -26,12 +26,12 @@ adjustment_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_qu83h"]
 size = Vector3(10, 0.1, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_085ix"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kltn7"]
 albedo_texture = ExtResource("8_kltn7")
 uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o4s6s"]
-material = SubResource("StandardMaterial3D_085ix")
+material = SubResource("StandardMaterial3D_kltn7")
 size = Vector3(10, 0.1, 10)
 
 [sub_resource type="Animation" id="Animation_q0tdy"]

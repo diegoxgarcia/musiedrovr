@@ -1,7 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmd81ocrgnp5e"]
+[gd_scene load_steps=13 format=3 uid="uid://dmd81ocrgnp5e"]
 
 [ext_resource type="Script" uid="uid://7b0rqcq1j4m1" path="res://Scenes/Levels/level_1.gd" id="1_tlcug"]
+[ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="2_3mqfk"]
+[ext_resource type="Texture2D" uid="uid://c8ybs0sbt63nb" path="res://Assets/Textures/texture_08.png" id="2_4dpyx"]
+[ext_resource type="Texture2D" uid="uid://dpxfjkdans3di" path="res://Assets/Textures/texture_05.png" id="2_cyadu"]
+[ext_resource type="Texture2D" uid="uid://b82veesgtoeh" path="res://Assets/Textures/texture_07.png" id="5_xgxfi"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5f3p6"]
+panorama = ExtResource("2_cyadu")
+
+[sub_resource type="Sky" id="Sky_jv26f"]
+sky_material = SubResource("PanoramaSkyMaterial_5f3p6")
+
+[sub_resource type="Environment" id="Environment_iixi8"]
+background_mode = 2
+background_energy_multiplier = 0.47
+sky = SubResource("Sky_jv26f")
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mqfk"]
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iixi8"]
+albedo_texture = ExtResource("2_4dpyx")
+uv1_scale = Vector3(25, 25, 25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cyadu"]
+material = SubResource("StandardMaterial3D_iixi8")
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb0md"]
+albedo_color = Color(0.47058824, 0.30588236, 1, 1)
+albedo_texture = ExtResource("5_xgxfi")
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_tlcug")
 metadata/_custom_type_script = "uid://hvsol5nxhf8e"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iixi8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7038908, 0.45615935, 0.5444782, -0.71030825, 0.45203808, 0.53955895, 0, -0.76653785, 0.64219916, 5.8851786, 6.777969, 3.026703)
+shadow_enabled = true
+
+[node name="XROrigin3D" parent="." instance=ExtResource("2_3mqfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.319896, 0.3785016, 0.16980183)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+shape = SubResource("BoxShape3D_3mqfk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D"]
+mesh = SubResource("BoxMesh_cyadu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.16980183)
+use_collision = true
+size = Vector3(4, 4, 11.505341)
+material = SubResource("StandardMaterial3D_rb0md")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17410117, -0.34534836, -4.086021)
+operation = 2
+size = Vector3(6.0351563, 3.0532837, 2.4852219)

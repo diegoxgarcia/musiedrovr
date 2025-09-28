@@ -77,7 +77,7 @@ func fade_out_viewport(material: BaseMaterial3D, duration: float = 1.0):
 	pass
 	
 func _on_show_start():
-	
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 	pass
 	
 func _on_show_credits():
