@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhrrnfpf5tgsv"
+path="res://.godot/imported/The Kids Don't Stand A Chance (Chromeo Remix).mp3-49d03e150da8c5b0c2317b29feb23448.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/The Kids Don't Stand A Chance (Chromeo Remix).mp3"
+dest_files=["res://.godot/imported/The Kids Don't Stand A Chance (Chromeo Remix).mp3-49d03e150da8c5b0c2317b29feb23448.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

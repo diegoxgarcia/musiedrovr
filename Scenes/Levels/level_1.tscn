@@ -66,9 +66,9 @@ shape = SubResource("BoxShape3D_3mqfk")
 mesh = SubResource("BoxMesh_cyadu")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.16980183)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5871582, 2, 0.16980183)
 use_collision = true
-size = Vector3(4, 4, 11.505341)
+size = Vector3(5.1743164, 4, 11.505341)
 material = SubResource("StandardMaterial3D_rb0md")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/CSGBox3D"]
