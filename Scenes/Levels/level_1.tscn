@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmd81ocrgnp5e"]
+[gd_scene load_steps=15 format=3 uid="uid://dmd81ocrgnp5e"]
 
 [ext_resource type="Script" uid="uid://7b0rqcq1j4m1" path="res://Scenes/Levels/level_1.gd" id="1_tlcug"]
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="2_3mqfk"]
-[ext_resource type="Texture2D" uid="uid://c8ybs0sbt63nb" path="res://Assets/Textures/texture_08.png" id="2_4dpyx"]
-[ext_resource type="Texture2D" uid="uid://dpxfjkdans3di" path="res://Assets/Textures/texture_05.png" id="2_cyadu"]
-[ext_resource type="Texture2D" uid="uid://b82veesgtoeh" path="res://Assets/Textures/texture_07.png" id="5_xgxfi"]
+[ext_resource type="Texture2D" uid="uid://doyi3mn28hrvs" path="res://Assets/Textures/sky.jpg" id="2_cyadu"]
+[ext_resource type="ArrayMesh" uid="uid://bl2gw4ux5cnbi" path="res://Assets/Models/Mountains.obj" id="4_5f3p6"]
+[ext_resource type="Texture2D" uid="uid://br8p32oe436v5" path="res://Assets/Textures/floor.jpg" id="4_xgxfi"]
+[ext_resource type="Texture2D" uid="uid://dqj457cs785at" path="res://Assets/Textures/metal.jpg" id="5_5f3p6"]
+[ext_resource type="PackedScene" uid="uid://bvf7o12qbylqi" path="res://Scenes/Particles/vfx_sparks.tscn" id="7_5f3p6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5f3p6"]
 panorama = ExtResource("2_cyadu")
@@ -24,21 +26,26 @@ ssil_enabled = true
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_read_sky_light = false
+glow_enabled = true
+glow_levels/2 = 0.63
+glow_levels/3 = 0.92
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mqfk"]
-size = Vector3(30, 0.1, 30)
+size = Vector3(130, 0.1, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iixi8"]
-albedo_texture = ExtResource("2_4dpyx")
-uv1_scale = Vector3(25, 25, 25)
+albedo_texture = ExtResource("4_xgxfi")
+uv1_scale = Vector3(80, 80, 80)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cyadu"]
 material = SubResource("StandardMaterial3D_iixi8")
-size = Vector3(30, 0.1, 30)
+size = Vector3(130, 0.1, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb0md"]
-albedo_color = Color(0.47058824, 0.30588236, 1, 1)
-albedo_texture = ExtResource("5_xgxfi")
+albedo_texture = ExtResource("5_5f3p6")
+metallic = 0.09
+metallic_texture = ExtResource("5_5f3p6")
+uv1_scale = Vector3(1.5, 1.5, 1.5)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_tlcug")
@@ -56,6 +63,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.319896, 0.3785016, 0.169801
 
 [node name="Environment" type="Node" parent="."]
 
+[node name="Mountains" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.381367, 0, 0)
+mesh = ExtResource("4_5f3p6")
+
 [node name="Floor" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 
@@ -65,6 +76,9 @@ shape = SubResource("BoxShape3D_3mqfk")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D"]
 mesh = SubResource("BoxMesh_cyadu")
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Environment/Floor"]
+size = Vector3(130, 0.1, 50)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5871582, 2, 0.16980183)
 use_collision = true
@@ -72,6 +86,19 @@ size = Vector3(5.1743164, 4, 11.505341)
 material = SubResource("StandardMaterial3D_rb0md")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17410117, -0.34534836, -4.086021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17410117, -0.4811287, -4.086021)
 operation = 2
-size = Vector3(6.0351563, 3.0532837, 2.4852219)
+size = Vector3(6.0351563, 3.3248444, 2.4852219)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030454934, -0.4811287, 0.13843143)
+operation = 2
+size = Vector3(4.656189, 3.3248444, 10.934127)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/CSGBox3D"]
+transform = Transform3D(0.0035390754, 0.077577986, -0.99698013, -0.99896115, 0.04557219, 0, 0.04543456, 0.9959442, 0.07765866, 0.020407796, 0.011988401, 4.9295087)
+operation = 2
+height = 2.526123
+
+[node name="VFX_Sparks" parent="." instance=ExtResource("7_5f3p6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6823977, 0)

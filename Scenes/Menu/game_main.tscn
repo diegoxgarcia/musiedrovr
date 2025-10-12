@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cu5lfoikocd8n"]
+[gd_scene load_steps=22 format=3 uid="uid://cu5lfoikocd8n"]
 
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="1_mcq2o"]
 [ext_resource type="Script" uid="uid://cjdi75t7561l2" path="res://Scenes/Menu/game_main.gd" id="1_tf2yj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dpbci75djwcd1" path="res://Scenes/UI/audio_menu.tscn" id="4_mymk4"]
 [ext_resource type="PackedScene" uid="uid://k6e84xh4qu8d" path="res://Scenes/UI/credits_menu.tscn" id="4_q0tdy"]
 [ext_resource type="PackedScene" uid="uid://bj4lkw3xmoyrw" path="res://Scenes/UI/how_to_menu.tscn" id="7_kltn7"]
+[ext_resource type="ArrayMesh" uid="uid://bl2gw4ux5cnbi" path="res://Assets/Models/Mountains.obj" id="8_gjbt4"]
 [ext_resource type="Texture2D" uid="uid://c8ybs0sbt63nb" path="res://Assets/Textures/texture_08.png" id="8_kltn7"]
 [ext_resource type="AudioStream" uid="uid://bhrrnfpf5tgsv" path="res://Assets/Music/The Kids Don't Stand A Chance (Chromeo Remix).mp3" id="9_085ix"]
 
@@ -19,10 +20,20 @@ sky_material = SubResource("ProceduralSkyMaterial_qu83h")
 
 [sub_resource type="Environment" id="Environment_mg83g"]
 background_mode = 2
+background_energy_multiplier = 0.38
 sky = SubResource("Sky_o4s6s")
 tonemap_mode = 2
 glow_enabled = true
+glow_intensity = 0.1
+glow_blend_mode = 0
+glow_hdr_threshold = 0.5
+glow_hdr_scale = 1.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0833
 adjustment_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_c4tih"]
+dof_blur_far_distance = 8192.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qu83h"]
 size = Vector3(10, 0.1, 10)
@@ -80,9 +91,11 @@ script = ExtResource("1_tf2yj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mg83g")
+camera_attributes = SubResource("CameraAttributesPractical_c4tih")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.7415229, -0.67059904, -0.020993443, 0.53040767, -0.60509217, 0.5937434, -0.41086665, 0.4291392, 0.80438054, -0.062678814, 3.2067623, 1.0417454)
+light_energy = 0.5
 shadow_enabled = true
 
 [node name="XROrigin3D" parent="." instance=ExtResource("1_mcq2o")]
@@ -118,6 +131,9 @@ scene = ExtResource("7_kltn7")
 viewport_size = Vector2(1152, 648)
 unshaded = true
 scene_properties_keys = PackedStringArray()
+
+[node name="Mountains" type="MeshInstance3D" parent="Environment"]
+mesh = ExtResource("8_gjbt4")
 
 [node name="Floor" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
