@@ -1,0 +1,52 @@
+[gd_scene load_steps=13 format=3 uid="uid://dudcpnxko3bij"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_478mw"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_8n0xd"]
+[ext_resource type="Animation" uid="uid://bediglpx0rj7i" path="res://addons/godot-xr-tools/hands/animations/left/Grip 5.res" id="3_bm345"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_gjrtp"]
+[ext_resource type="Animation" uid="uid://s1vqcxyqcvea" path="res://addons/godot-xr-tools/hands/animations/right/Grip 5.res" id="4_yivv5"]
+[ext_resource type="Script" uid="uid://l2al27drorlf" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="5_bm345"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bm345"]
+rough = true
+bounce = 0.83
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_478mw"]
+custom_solver_bias = 0.2
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_478mw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mhpy0"]
+material = SubResource("StandardMaterial3D_478mw")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Resource" id="Resource_qwakt"]
+script = ExtResource("5_bm345")
+closed_pose = ExtResource("3_bm345")
+metadata/_custom_type_script = "uid://l2al27drorlf"
+
+[sub_resource type="Resource" id="Resource_ec6p1"]
+script = ExtResource("5_bm345")
+closed_pose = ExtResource("4_yivv5")
+metadata/_custom_type_script = "uid://l2al27drorlf"
+
+[node name="PickableSphere" instance=ExtResource("1_478mw")]
+physics_material_override = SubResource("PhysicsMaterial_bm345")
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_478mw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("SphereMesh_mhpy0")
+
+[node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("2_8n0xd")]
+transform = Transform3D(0.98950076, 0.14415109, -0.010436147, -0.1437648, 0.9891164, 0.03131688, 0.0148368925, -0.029487727, 0.9994551, -0.065351196, 0.071326576, -0.064651854)
+visible = true
+hand_pose = SubResource("Resource_qwakt")
+
+[node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("3_gjrtp")]
+transform = Transform3D(0.9417892, -0.22462793, -0.25015077, 0.21710023, 0.9744446, -0.057664488, 0.2567111, -1.3603871e-09, 0.9664882, 0.07570933, 0.07467984, -0.062631294)
+visible = true
+hand_pose = SubResource("Resource_ec6p1")

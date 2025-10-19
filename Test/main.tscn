@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cefrxwhapemqs"]
+[gd_scene load_steps=21 format=3 uid="uid://cefrxwhapemqs"]
 
 [ext_resource type="Script" uid="uid://b0xr8uy2i15bk" path="res://Test/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="2_8gbba"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cysdx83c12io6" path="res://Scenes/cube.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://b4fy3xek13w85" path="res://Scenes/wall.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://trhwfgmvhboq" path="res://Scenes/rock_climb_obj.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://dudcpnxko3bij" path="res://Scenes/Pickables/pickable_sphere.tscn" id="7_uqfvg"]
+[ext_resource type="PackedScene" uid="uid://cljvduhg38m7" path="res://Scenes/Pickables/pickable_cube.tscn" id="8_s1ffu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -144,6 +146,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.99949, 3.97679, -2.06625)
 
 [node name="RockClimbObj10" parent="Environment" instance=ExtResource("6_21xkr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00373, 5.4191, -0.708232)
+
+[node name="PickableSphere" parent="." instance=ExtResource("7_uqfvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8359908, 1.11634, -1.1713529)
+
+[node name="PickableCube" parent="." instance=ExtResource("8_s1ffu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70158625, 1.0635935, -1.2408499)
 
 [editable path="PickableObject3"]
 [editable path="PickableObject2"]
