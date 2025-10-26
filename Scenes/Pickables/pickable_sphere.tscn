@@ -33,6 +33,7 @@ closed_pose = ExtResource("4_yivv5")
 metadata/_custom_type_script = "uid://l2al27drorlf"
 
 [node name="PickableSphere" instance=ExtResource("1_478mw")]
+collision_mask = 196647
 physics_material_override = SubResource("PhysicsMaterial_bm345")
 
 [node name="CollisionShape3D" parent="." index="0"]

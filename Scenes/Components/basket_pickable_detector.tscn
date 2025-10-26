@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dde6lbo8s6ks"]
+
+[ext_resource type="Script" uid="uid://ctelej4e2x253" path="res://Scenes/Components/basket_pickable_detector.gd" id="1_dwqqg"]
+
+[node name="BasketPickableDetector" type="Area3D"]
+script = ExtResource("1_dwqqg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

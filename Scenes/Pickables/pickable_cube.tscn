@@ -27,6 +27,7 @@ closed_pose = ExtResource("6_fvibm")
 metadata/_custom_type_script = "uid://l2al27drorlf"
 
 [node name="PickableCube" instance=ExtResource("1_d5xx5")]
+collision_mask = 196647
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_d5xx5")

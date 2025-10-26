@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmd81ocrgnp5e"]
+[gd_scene load_steps=20 format=3 uid="uid://dmd81ocrgnp5e"]
 
 [ext_resource type="Script" uid="uid://7b0rqcq1j4m1" path="res://Scenes/Levels/level_1.gd" id="1_tlcug"]
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="2_3mqfk"]
@@ -6,7 +6,10 @@
 [ext_resource type="ArrayMesh" uid="uid://bl2gw4ux5cnbi" path="res://Assets/Models/Mountains.obj" id="4_5f3p6"]
 [ext_resource type="Texture2D" uid="uid://br8p32oe436v5" path="res://Assets/Textures/floor.jpg" id="4_xgxfi"]
 [ext_resource type="Texture2D" uid="uid://dqj457cs785at" path="res://Assets/Textures/metal.jpg" id="5_5f3p6"]
+[ext_resource type="PackedScene" uid="uid://clgyt6116tt73" path="res://Scenes/InteractiveObj/WickerBasket.tscn" id="5_u5ghp"]
+[ext_resource type="PackedScene" uid="uid://dudcpnxko3bij" path="res://Scenes/Pickables/pickable_sphere.tscn" id="6_hwvp3"]
 [ext_resource type="PackedScene" uid="uid://bvf7o12qbylqi" path="res://Scenes/Particles/vfx_sparks.tscn" id="7_5f3p6"]
+[ext_resource type="PackedScene" uid="uid://cljvduhg38m7" path="res://Scenes/Pickables/pickable_cube.tscn" id="7_afv7b"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5f3p6"]
 panorama = ExtResource("2_cyadu")
@@ -47,6 +50,13 @@ metallic = 0.09
 metallic_texture = ExtResource("5_5f3p6")
 uv1_scale = Vector3(1.5, 1.5, 1.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f3p6"]
+albedo_color = Color(0.70000815, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jv26f"]
+albedo_color = Color(1, 1, 0.6636826, 1)
+metallic = 0.12
+
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_tlcug")
 metadata/_custom_type_script = "uid://hvsol5nxhf8e"
@@ -66,6 +76,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.319896, 0.3785016, 0.169801
 [node name="Mountains" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.381367, 0, 0)
 mesh = ExtResource("4_5f3p6")
+
+[node name="WickerBasket" parent="Environment" instance=ExtResource("5_u5ghp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55825084, 0.86382365, 3.1181283)
+
+[node name="PickableSphere" parent="Environment" instance=ExtResource("6_hwvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4759336, 1.5143229, 4.3197036)
+
+[node name="PickableCube" parent="Environment" instance=ExtResource("7_afv7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4407243, 1.5071142, 3.661926)
 
 [node name="Floor" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
@@ -96,9 +115,29 @@ operation = 2
 size = Vector3(4.656189, 3.3248444, 10.934127)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/CSGBox3D"]
-transform = Transform3D(0.0035390754, 0.077577986, -0.99698013, -0.99896115, 0.04557219, 0, 0.04543456, 0.9959442, 0.07765866, 0.020407796, 0.011988401, 4.9295087)
+transform = Transform3D(0.0035390754, 0.077577986, -0.99698013, -0.99896115, 0.04557219, 0, 0.04543456, 0.9959442, 0.07765866, 0.08534336, 0.050133944, 5.76315)
 operation = 2
-height = 2.526123
+radius = 1.3745117
+height = 0.8520508
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Environment/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90807605, -1.3296556, 3.9020996)
+radius = 0.8125
+height = 1.4619141
+material = SubResource("StandardMaterial3D_5f3p6")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Environment/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3329809, -1.6072435, 2.981217)
+radius = 0.8125
+height = 0.9067383
+material = SubResource("StandardMaterial3D_jv26f")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment"]
+transform = Transform3D(-0.671009, -0.64473385, -0.36614922, -0.732447, 0.65311676, 0.19224967, 0.11518833, 0.39718616, -0.91048056, -1.6136401, 2.3168988, -1.5519243)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Environment"]
+transform = Transform3D(-0.67100906, -0.64473385, -0.3661492, -0.6477534, 0.2694568, 0.7126069, -0.36078042, 0.7153401, -0.5984364, 0.72689176, 2.9009137, 2.4317732)
 
 [node name="VFX_Sparks" parent="." instance=ExtResource("7_5f3p6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6823977, 0)
+visible = false
