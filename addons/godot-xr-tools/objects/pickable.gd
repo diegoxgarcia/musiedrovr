@@ -110,19 +110,27 @@ var _highlight_requests : Dictionary = {}
 # Is this node highlighted
 var _highlighted : bool = false
 
-
 # Remember some state so we can return to it when the user drops the object
 @onready var original_collision_mask : int = collision_mask
 @onready var original_collision_layer : int = collision_layer
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
+var rng = RandomNumberGenerator.new()
+var pickable_shape_data = PickableShapeData.new()
+var key_color = rng.randi_range(0, pickable_shape_data.shape_color.size() - 1)
 
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsPickable"
-
+	
+	
+func change_color(index_color : int):
+	mesh_instance_3d.get_active_material(0).albedo_color = pickable_shape_data.shape_color[index_color]
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	change_color(key_color)
 	# Get all grab points
 	for child in get_children():
 		var grab_point := child as XRToolsGrabPoint
