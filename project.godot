@@ -8,18 +8,22 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Musiedro"
 run/main_scene="uid://cu5lfoikocd8n"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="uid://da8qa8t8gmruv"
 config/icon="uid://7xifnl1atq1m"
 
 [autoload]
 
-XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
-XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
+XRToolsUserSettings="*uid://clm5m351ws310"
+XRToolsRumbleManager="*uid://bp5r2vqm5mt0y"
 GameManager="*res://Global/game_manager.gd"
 
 [display]

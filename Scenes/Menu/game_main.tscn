@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cu5lfoikocd8n"]
+[gd_scene format=3 uid="uid://cu5lfoikocd8n"]
 
 [ext_resource type="PackedScene" uid="uid://b6a6n3crlib1l" path="res://Scenes/XRCharacters/xr_origin.tscn" id="1_mcq2o"]
 [ext_resource type="Script" uid="uid://cjdi75t7561l2" path="res://Scenes/Menu/game_main.gd" id="1_tf2yj"]
@@ -86,70 +86,68 @@ _data = {
 &"lights_off_fade": SubResource("Animation_gr7ok")
 }
 
-[node name="GameMain" type="Node3D"]
+[node name="GameMain" type="Node3D" unique_id=29647642]
 script = ExtResource("1_tf2yj")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1756527558]
 environment = SubResource("Environment_mg83g")
 camera_attributes = SubResource("CameraAttributesPractical_c4tih")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=291474592]
 transform = Transform3D(-0.7415229, -0.67059904, -0.020993443, 0.53040767, -0.60509217, 0.5937434, -0.41086665, 0.4291392, 0.80438054, -0.062678814, 3.2067623, 1.0417454)
 light_energy = 0.5
 shadow_enabled = true
 
-[node name="XROrigin3D" parent="." instance=ExtResource("1_mcq2o")]
+[node name="XROrigin3D" parent="." unique_id=444387908 instance=ExtResource("1_mcq2o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376785, 0)
 script = null
 
-[node name="Environment" type="Node" parent="."]
+[node name="Environment" type="Node" parent="." unique_id=656509359]
 
-[node name="ViewPortCredits" parent="Environment" instance=ExtResource("2_tf2yj")]
+[node name="ViewPortCredits" parent="Environment" unique_id=1763603909 instance=ExtResource("2_tf2yj")]
 transform = Transform3D(0.49999872, 0, -0.0011524276, -0.00070929935, 0.39407516, -0.30774054, 0.0009082865, 0.30774128, 0.39407414, -0.019393504, 3.3944669, -2.5531547)
 scene = ExtResource("4_q0tdy")
 viewport_size = Vector2(1152, 648)
 unshaded = true
 scene_properties_keys = PackedStringArray()
 
-[node name="ViewPortAudio" parent="Environment" instance=ExtResource("2_tf2yj")]
+[node name="ViewPortAudio" parent="Environment" unique_id=418560256 instance=ExtResource("2_tf2yj")]
 transform = Transform3D(0.401294, 0, -0.298267, 0, 0.5, 0, 0.298267, 0, 0.401294, 2.1, 1.9, -2.4)
 scene = ExtResource("4_mymk4")
 viewport_size = Vector2(1152, 648)
 unshaded = true
 scene_properties_keys = PackedStringArray("audio_menu.gd")
 
-[node name="ViewPortMain" parent="Environment" instance=ExtResource("2_tf2yj")]
+[node name="ViewPortMain" parent="Environment" unique_id=729634819 instance=ExtResource("2_tf2yj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8407, -2.92362)
 scene = ExtResource("3_mymk4")
 viewport_size = Vector2(1152, 648)
 unshaded = true
 scene_properties_keys = PackedStringArray("game_menu.gd")
 
-[node name="ViewPortHowTo" parent="Environment" instance=ExtResource("2_tf2yj")]
+[node name="ViewPortHowTo" parent="Environment" unique_id=1350237817 instance=ExtResource("2_tf2yj")]
 transform = Transform3D(0.401409, 0, 0.298112, 0, 0.5, 0, -0.298112, 0, 0.401409, -2.1, 1.9, -2.4)
 scene = ExtResource("7_kltn7")
 viewport_size = Vector2(1152, 648)
 unshaded = true
 scene_properties_keys = PackedStringArray()
 
-[node name="Mountains" type="MeshInstance3D" parent="Environment"]
+[node name="Mountains" type="MeshInstance3D" parent="Environment" unique_id=1674168432]
 mesh = ExtResource("8_gjbt4")
 
-[node name="Floor" type="StaticBody3D" parent="Environment"]
+[node name="Floor" type="StaticBody3D" parent="Environment" unique_id=1510922939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor" unique_id=1808391788]
 shape = SubResource("BoxShape3D_qu83h")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D" unique_id=1412586330]
 mesh = SubResource("BoxMesh_o4s6s")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kltn7")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1581524453]
+libraries/ = SubResource("AnimationLibrary_kltn7")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=226752179]
 stream = ExtResource("9_085ix")
 autoplay = true
 bus = &"Music"
